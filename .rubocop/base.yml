@@ -1,0 +1,6 @@
+AllCops:
+  Exclude:
+    - bin/**/*
+    - vendor/bundle/**/*
+  NewCops: enable
+  TargetRubyVersion: 3.0

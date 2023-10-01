@@ -1,0 +1,20 @@
+name: Lint
+
+on:
+  workflow_call:
+
+jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Branch
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+
+      - name: Run Rubocop
+        run: bundle exec rubocop --display-cop-names

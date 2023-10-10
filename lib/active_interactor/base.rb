@@ -7,8 +7,12 @@ module ActiveInteractor
         attributes[:arguments][name.to_sym] = { name: name, type: type, description: description }.merge(options)
       end
 
+      def perform!(input_context = {})
+        new(input_context).perform!
+      end
+
       def perform(input_context = {})
-        new(input_context).send(:exec_perform!)
+        perform!(input_context)
       rescue Error => e
         e.result
       rescue StandardError => e
@@ -31,17 +35,25 @@ module ActiveInteractor
       @context = parse_input!
     end
 
-    def perform; end
+    def perform!
+      interact
+      Result.success(data: parse_output!)
+    end
+
+    def perform
+      perform!
+    rescue Error => e
+      e.result
+    rescue StandardError => e
+      Result.failure(errors: e.message)
+    end
+
+    def interact; end
     def rollback; end
 
     protected
 
     attr_accessor :context
-
-    def exec_perform!
-      perform
-      Result.success(data: parse_output!)
-    end
 
     def fail!(errors = {})
       rollback

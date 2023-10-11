@@ -2,6 +2,7 @@
 
 require 'active_model'
 require 'active_support'
+require 'active_support/core_ext'
 
 require_relative 'active_interactor/errors'
 

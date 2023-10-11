@@ -36,8 +36,10 @@ module ActiveInteractor
     end
 
     def perform!
-      interact
-      Result.success(data: parse_output!)
+      with_notification(:perform) do |payload|
+        interact
+        payload[:result] = Result.success(data: parse_output!)
+      end
     end
 
     def perform
@@ -56,8 +58,14 @@ module ActiveInteractor
     attr_accessor :context
 
     def fail!(errors = {})
-      rollback
-      raise Error, Result.failure(data: context, errors: errors)
+      result = nil
+      with_notification(:rollback) do |payload|
+        rollback
+        result = Result.failure(data: parse_output!, errors: errors)
+        payload[:result] = result
+      end
+
+      raise Error, result
     end
 
     def parse_input!
@@ -90,6 +98,12 @@ module ActiveInteractor
       errors[attribute_name] ||= []
       errors[attribute_name] << :blank
       errors
+    end
+
+    def with_notification(action)
+      ActiveSupport::Notifications.instrument("#{self.class.name}::#{action.to_s.classify}") do |payload|
+        yield payload if block_given?
+      end
     end
   end
 end

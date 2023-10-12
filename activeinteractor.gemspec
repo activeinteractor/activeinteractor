@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-GEM_VERSION = '2.0.0.alpha.2.3.0'
-SEMVER = '2.0.0-alpha.2.3.0'
+GEM_VERSION = '2.0.0.alpha.2.3.1'
+SEMVER = '2.0.0-alpha.2.3.1'
 REPO = 'https://github.com/activeinteractor/activeinteractor'
 
 Gem::Specification.new do |spec|

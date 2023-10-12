@@ -13,7 +13,7 @@ module ActiveInteractor
       failed_at_output: 3
     }.freeze
 
-    attr_reader :data, :errors
+    attr_reader :data
 
     class << self
       def success(data: {})

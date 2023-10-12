@@ -4,12 +4,14 @@ module ActiveInteractor
   module HasActiveModelErrors
     extend ActiveSupport::Concern
 
+    attr_reader :errors
+
     module ClassMethods
-      def self.human_attribute_name(attribute, _options = {})
+      def human_attribute_name(attribute, _options = {})
         attribute.respond_to?(:to_s) ? attribute.to_s.humanize : attribute
       end
 
-      def self.lookup_ancestors
+      def lookup_ancestors
         [self]
       end
     end
@@ -17,8 +19,6 @@ module ActiveInteractor
     included do
       extend ActiveModel::Naming
       extend ClassMethods
-
-      attr_reader :errors
     end
 
     def read_attribute_for_validation(attribute_name)

@@ -5,6 +5,14 @@ module ActiveInteractor
     module AttributeAssignment
       extend ActiveSupport::Concern
 
+      def initialize(attributes = {})
+        attribute_set.attributes.each do |attribute|
+          next unless attributes.with_indifferent_access.key?(attribute.name)
+
+          assign_attribute_value(attribute.name, attributes.with_indifferent_access[attribute.name])
+        end
+      end
+
       def [](attribute_name)
         read_attribute_value(attribute_name)
       end

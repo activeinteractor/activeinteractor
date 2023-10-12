@@ -34,13 +34,38 @@ module ActiveInteractor
       end
 
       def validate!
+        validate_presence! && validate_type!
+      end
+
+      def value
+        @user_provided_value || default_value
+      end
+
+      private
+
+      def type_is_a_active_interactor_type?
+        type.is_a?(ActiveInteractor::Type::Base) || type.superclass == ActiveInteractor::Type::Base
+      end
+
+      def validate_presence!
         return true unless required? && value.nil?
 
         error_messages << :blank
       end
 
-      def value
-        @user_provided_value || default_value
+      def validate_type!
+        return true if value.nil?
+        return true if %i[any untyped].include?(type)
+
+        if type_is_a_active_interactor_type?
+          return true if type.valid?(value)
+
+          error_messages << :invalid
+        elsif value.is_a?(type)
+          return true
+        end
+
+        error_messages << :invalid
       end
     end
   end

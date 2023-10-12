@@ -2,6 +2,8 @@
 
 module ActiveInteractor
   class Base
+    include Type::HasTypes
+
     class << self
       delegate :argument, :argument_names, :arguments, to: :input_context_class
       delegate :returns, :field_names, :fields, to: :output_context_class

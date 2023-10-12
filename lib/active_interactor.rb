@@ -13,4 +13,5 @@ module ActiveInteractor
   autoload :Context
   autoload :HasActiveModelErrors
   autoload :Result
+  autoload :Type
 end

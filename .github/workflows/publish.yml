@@ -15,9 +15,10 @@ jobs:
         with:
           ruby-version: '3.0'
           bundler-cache: true
-      - name: publish to rubygems
+      - name: setup credentials
         env:
-          GEM_HOST_API_KEY: ${{secrets.RUBYGEMS_AUTH_TOKEN}}
+          RUBYGEMS_AUTH_TOKEN: ${{ secrets.RUBYGEMS_AUTH_TOKEN }}
+          GPR_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p $HOME/.gem
           mkdir -p $HOME/.local/share/gem
@@ -25,23 +26,16 @@ jobs:
           touch $HOME/.local/share/gem/credentials
           chmod 0600 $HOME/.gem/credentials
           chmod 0600 $HOME/.local/share/gem/credentials
-          printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
-          printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.local/share/gem/credentials
-          gem build *.gemspec
-          gem push *.gem
+          printf -- "---\n:rubygems_api_key: ${RUBYGEMS_AUTH_TOKEN}\n:github: ${GPR_AUTH_TOKEN}\n" > $HOME/.gem/credentials
+          printf -- "---\n:rubygems_api_key: ${RUBYGEMS_AUTH_TOKEN}\n:github: ${GPR_AUTH_TOKEN}\n" > $HOME/.local/share/gem/credentials
       - name: publish to github package registry
         env:
-          GEM_HOST_API_KEY: ${{secrets.GITHUB_TOKEN}}
           OWNER: activeinteractor
         run: |
-          mkdir -p $HOME/.gem
-          mkdir -p $HOME/.local/share/gem
-          touch $HOME/.gem/credentials
-          touch $HOME/.local/share/gem/credentials
-          chmod 0600 $HOME/.gem/credentials
-          chmod 0600 $HOME/.local/share/gem/credentials
-          printf -- "---\n:github: Bearer ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
-          printf -- "---\n:github: Bearer ${GEM_HOST_API_KEY}\n" > $HOME/.local/share/gem/credentials
           gem build *.gemspec
           gem push --KEY github --host https://rubygems.pkg.github.com/${OWNER} *.gem
+      - name: publish to rubygems
+        run: |
+          gem build *.gemspec
+          gem push *.gem
 

@@ -28,11 +28,10 @@ module ActiveInteractor
         @table[attribute_name.to_sym] = value
       end
 
-      def method_missing(method_id, *arguments)
-        method_name = method_id[/.*(?==\z)/m]
-        return assignment_method_missing(method_name, *arguments) if method_name
+      def method_missing(method_name, *arguments)
+        return assignment_method_missing(method_name, *arguments) if method_name.to_s.end_with?('=')
 
-        read_attribute_value(method_id)
+        read_attribute_value(method_name)
       end
 
       def read_attribute_value(attribute_name)

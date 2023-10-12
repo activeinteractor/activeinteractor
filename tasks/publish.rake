@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 desc 'publish activeinteractor to all sources'
-task :publish do
-  Rake::Task['build'].invoke
+task publish: %i[build version:sync] do
   lastest_package = Dir['pkg/activeinteractor-*.gem'].last
   puts "\033[0;36m==> Publishing #{lastest_package} to rubygems.org\033[0m"
   system("gem push #{lastest_package}")

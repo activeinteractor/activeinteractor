@@ -8,6 +8,6 @@ task :publish do
   system("gem push #{lastest_package}")
   puts "\033[0;32m==> Published #{lastest_package} to github package registry\033[0m"
   system(
-    "gem push --KEY github --host https://rubygems.pkg.github.com/activeinteractor/activeinteractor #{lastest_package}"
+    "gem push --KEY github --host https://rubygems.pkg.github.com/activeinteractor #{lastest_package}"
   )
 end

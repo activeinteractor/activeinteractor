@@ -2,7 +2,9 @@
 
 module ActiveInteractor
   class Result
-    extend ActiveModel::Naming
+    include HasActiveModelErrors
+
+    delegate :to_json, to: :to_hash
 
     STATUS = {
       success: 0,
@@ -24,14 +26,6 @@ module ActiveInteractor
           Array.wrap(messages).each { |message| result.errors.add(attribute, message) }
         end
         result
-      end
-
-      def human_attribute_name(attribute, _options = {})
-        attribute.respond_to?(:to_s) ? attribute.to_s.humanize : attribute
-      end
-
-      def lookup_ancestors
-        [self]
       end
 
       private
@@ -62,12 +56,21 @@ module ActiveInteractor
     alias failed? failure?
 
     def read_attribute_for_validation(attribute_name)
-      data[attribute_name]
+      data.send(attribute_name.to_sym)
     end
 
     def success?
       @status == STATUS[:success]
     end
     alias successful? success?
+
+    def to_hash
+      {
+        success: success?,
+        errors: errors.to_hash,
+        data: data.to_hash
+      }
+    end
+    alias to_h to_hash
   end
 end

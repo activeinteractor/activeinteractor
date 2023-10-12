@@ -10,5 +10,7 @@ module ActiveInteractor
   extend ActiveSupport::Autoload
 
   autoload :Base
+  autoload :Context
+  autoload :HasActiveModelErrors
   autoload :Result
 end

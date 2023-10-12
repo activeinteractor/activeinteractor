@@ -1,0 +1,40 @@
+name: Publish
+
+on:
+  workflow_call:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Branch
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+
+      - name: Setup Credentials
+        env:
+          RUBYGEMS_AUTH_TOKEN: ${{ secrets.RUBYGEMS_AUTH_TOKEN }}
+          GPR_AUTH_TOKEN: ${{ secrets.GPR_AUTH_TOKEN }}
+        run: |
+          mkdir -p $HOME/.local/share/gem
+          touch $HOME/.local/share/gem/credentials
+          chmod 0600 $HOME/.local/share/gem/credentials
+          printf -- "---\n:rubygems_api_key: ${RUBYGEMS_AUTH_TOKEN}\n:github: ${GPR_AUTH_TOKEN}\n" > $HOME/.local/share/gem/credentials
+
+      - name: Build Gem
+        run: gem build *.gemspec
+
+      - name: Publish To Rubygems
+        run: |
+          gem push *.gem
+
+      - name: Publish To Github Package Registry
+        env:
+          OWNER: activeinteractor
+        run: |
+          gem push --KEY github --host https://rubygems.pkg.github.com/${OWNER} *.gem

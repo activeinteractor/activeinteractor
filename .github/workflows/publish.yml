@@ -18,7 +18,7 @@ jobs:
       - name: setup credentials
         env:
           RUBYGEMS_AUTH_TOKEN: ${{ secrets.RUBYGEMS_AUTH_TOKEN }}
-          GPR_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GPR_AUTH_TOKEN: ${{ secrets.GPR_AUTH_TOKEN }}
         run: |
           mkdir -p $HOME/.gem
           mkdir -p $HOME/.local/share/gem

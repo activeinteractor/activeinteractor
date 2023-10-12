@@ -7,6 +7,7 @@ module ActiveInteractor
       include HasActiveModelErrors
       include AttributeRegistration
       include AttributeAssignment
+      include Type::HasTypes
 
       attr_reader :errors
 

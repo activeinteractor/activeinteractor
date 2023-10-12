@@ -4,8 +4,11 @@ on:
   workflow_call:
 
 jobs:
-  publish-rubygems:
+  publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read|write
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1

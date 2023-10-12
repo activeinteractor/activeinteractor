@@ -19,10 +19,13 @@ jobs:
         env:
           GEM_HOST_API_KEY: ${{secrets.RUBYGEMS_AUTH_TOKEN}}
         run: |
-          gem update --system
           mkdir -p $HOME/.gem
+          mkdir -p $HOME/.local/share/gem
           touch $HOME/.gem/credentials
+          touch $HOME/.local/share/gem/credentials
           chmod 0600 $HOME/.gem/credentials
+          chmod 0600 $HOME/.local/share/gem/credentials
+          printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
           printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.local/share/gem/credentials
           gem build *.gemspec
           gem push *.gem
@@ -31,11 +34,14 @@ jobs:
           GEM_HOST_API_KEY: ${{secrets.GITHUB_TOKEN}}
           OWNER: activeinteractor
         run: |
-          gem update --system
           mkdir -p $HOME/.gem
+          mkdir -p $HOME/.local/share/gem
           touch $HOME/.gem/credentials
+          touch $HOME/.local/share/gem/credentials
           chmod 0600 $HOME/.gem/credentials
+          chmod 0600 $HOME/.local/share/gem/credentials
           printf -- "---\n:github: Bearer ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
+          printf -- "---\n:github: Bearer ${GEM_HOST_API_KEY}\n" > $HOME/.local/share/gem/credentials
           gem build *.gemspec
           gem push --KEY github --host https://rubygems.pkg.github.com/${OWNER} *.gem
 

@@ -57,7 +57,7 @@ module ActiveInteractor
       with_notification(:perform) do |payload|
         interact
         generate_and_validate_output_context!
-        payload[:result] = Result.success(data: @output)
+        payload[:result] = Result.success(data: output_to_result_context!)
       end
     end
 
@@ -90,9 +90,13 @@ module ActiveInteractor
     def generate_and_validate_output_context!
       @output = self.class.output_context_class.new(context.attributes)
       @output.validate!
-      return @output if @output.errors.empty?
+      return if @output.errors.empty?
 
       raise Error, Result.failure(errors: @output.errors, status: Result::STATUS[:failed_at_output])
+    end
+
+    def output_to_result_context!
+      Context::Result.for_output_context(self.class, @output)
     end
 
     def validate_input_and_generate_runtime_context!

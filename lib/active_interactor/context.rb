@@ -11,6 +11,7 @@ module ActiveInteractor
     autoload :Base
     autoload :Input
     autoload :Output
+    autoload :Result
     autoload :Runtime
   end
 end

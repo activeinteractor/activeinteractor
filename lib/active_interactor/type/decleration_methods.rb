@@ -2,7 +2,7 @@
 
 module ActiveInteractor
   module Type
-    module HasTypes
+    module DeclerationMethods
       extend ActiveSupport::Concern
 
       Boolean = ActiveInteractor::Type::Boolean

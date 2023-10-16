@@ -9,9 +9,10 @@ require_relative 'active_interactor/errors'
 module ActiveInteractor
   extend ActiveSupport::Autoload
 
+  autoload :ActiveModelErrorMethods
   autoload :Base
   autoload :Context
-  autoload :HasActiveModelErrors
+  autoload :Interactor
   autoload :Result
   autoload :Type
 end

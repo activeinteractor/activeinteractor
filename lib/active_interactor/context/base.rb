@@ -3,11 +3,10 @@
 module ActiveInteractor
   module Context
     class Base
-      include ActiveModel::Validations
-      include HasActiveModelErrors
+      include ActiveModelErrorMethods
       include AttributeRegistration
       include AttributeAssignment
-      include Type::HasTypes
+      include Type::DeclerationMethods
 
       def initialize(attributes = {})
         super

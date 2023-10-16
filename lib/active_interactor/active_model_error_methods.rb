@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ActiveInteractor
-  module HasActiveModelErrors
+  module ActiveModelErrorMethods
     extend ActiveSupport::Concern
 
     attr_reader :errors

@@ -2,7 +2,7 @@
 
 module ActiveInteractor
   class Result
-    include HasActiveModelErrors
+    include ActiveModelErrorMethods
 
     delegate :to_json, to: :to_hash
 
@@ -68,7 +68,7 @@ module ActiveInteractor
       {
         success: success?,
         errors: errors.to_hash,
-        data: data.to_hash
+        data: data.to_json
       }
     end
     alias to_h to_hash

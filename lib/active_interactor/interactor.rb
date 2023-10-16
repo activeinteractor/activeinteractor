@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
 module ActiveInteractor
-  module Type
+  module Interactor
     extend ActiveSupport::Autoload
 
     autoload :Base
-    autoload :Boolean
-    autoload :DeclerationMethods
-    autoload :List
-    autoload :Union
+    autoload :ContextMethods
+    autoload :InteractionMethods
   end
 end

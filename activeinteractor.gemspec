@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-GEM_VERSION = '2.0.0.alpha.2.3.3'
-SEMVER = '2.0.0-alpha.2.3.3'
+GEM_VERSION = '2.0.0.alpha.2.3.4'
+SEMVER = '2.0.0-alpha.2.3.4'
 REPO = 'https://github.com/activeinteractor/activeinteractor'
 
 Gem::Specification.new do |spec|
@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
     'changelog_uri' => "#{REPO}/blob/v#{SEMVER}/CHANGELOG.md",
     'homepage_uri' => REPO,
     'source_code_uri' => "#{REPO}/tree/v#{SEMVER}",
+    'documentation_uri' => 'https://api.activeinteractor.io',
     'wiki_uri' => "#{REPO}/wiki",
     'rubygems_mfa_required' => 'true'
   }

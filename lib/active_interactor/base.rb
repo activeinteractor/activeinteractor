@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 module ActiveInteractor
-  class Base < ActiveInteractor::Interactor::Base
-    include Type::DeclerationMethods
-  end
+  # The Main interface for ActiveInteractor
+  #
+  # @deprecated will be removed in version 2.0.0-alpha.3.0.0
+  #   use {ActiveInteractor::Interactor::Base} instead
+  class Base < ActiveInteractor::Interactor::Base; end
 end

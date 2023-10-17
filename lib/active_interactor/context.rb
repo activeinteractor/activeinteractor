@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module ActiveInteractor
+  # The Context namespace
   module Context
     extend ActiveSupport::Autoload
 

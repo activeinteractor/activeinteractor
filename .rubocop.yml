@@ -6,3 +6,4 @@ inherit_from:
   - .rubocop/rake.yml
   - .rubocop/rspec.yml
   - .rubocop/style.yml
+  - .rubocop/yard.yml

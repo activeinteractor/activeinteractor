@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module ActiveInteractor
+  # @private
   module Type
     extend ActiveSupport::Autoload
 

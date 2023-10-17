@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 module ActiveInteractor
+  # @private
   module ActiveModelErrorMethods
     extend ActiveSupport::Concern
 
     attr_reader :errors
 
+    # @private
     module ClassMethods
       def human_attribute_name(attribute, _options = {})
         attribute.respond_to?(:to_s) ? attribute.to_s.humanize : attribute

@@ -2,18 +2,18 @@
 
 ## Supported Versions
 
-| Version | Supported                |
-| ------- | ------------------------ |
-| 2.0.x   | :rocket: :beetle: :lock: |
-| 1.2.x   | :lock:                   |
-| 1.1.x   | :x:                      |
-| 1.0.x   | :x:                      |
-| 0.1.x   | :x:                      |
+| Version | Supported |
+| :-----: | :-------: |
+| 2.0.x   | 🚀 🐞 🔒   |
+| 1.2.x   | 🔒        |
+| 1.1.x   | ❌        |
+| 1.0.x   | ❌        |
+| 0.1.x   | ❌        |
 
-- :rocket: - Currently addressing feature requests
-- :beetle: - Currently addressing bug reports
-- :lock:   - Currently addressing security reports
-- :x:      - No longer supported
+- 🚀 - Currently addressing feature requests
+- 🐞 - Currently addressing bug reports
+- 🔒 - Currently addressing security reports
+- ❌ - No longer supported
 
 ## Reporting a Vulnerability
 

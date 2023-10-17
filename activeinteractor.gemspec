@@ -2,8 +2,8 @@
 
 GEM_VERSION = '2.0.0.alpha.2.3.4'
 SEMVER = '2.0.0-alpha.2.3.4'
+HOME_URL = 'https://activeinteractor.org'
 REPO_URL = 'https://github.com/activeinteractor/activeinteractor'
-API_DOC_URL = 'https://api.activeinteractor.io'
 
 Gem::Specification.new do |spec|
   spec.name = 'activeinteractor'
@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.authors       = ['Aaron Allen']
   spec.email         = ['hello@aaronmallen.me']
-  spec.homepage      = REPO_URL
+  spec.homepage      = HOME_URL
 
   spec.files = Dir['CHANGELOG.md', 'LICENSE', 'README.md', 'lib/**/*', 'sig/**/*']
   spec.require_paths = ['lib']
@@ -28,9 +28,9 @@ Gem::Specification.new do |spec|
   spec.metadata = {
     'bug_tracker_uri' => "#{REPO_URL}/issues",
     'changelog_uri' => "#{REPO_URL}/blob/v#{SEMVER}/CHANGELOG.md",
-    'homepage_uri' => REPO_URL,
+    'homepage_uri' => spec.homepage,
     'source_code_uri' => "#{REPO_URL}/tree/v#{SEMVER}",
-    'documentation_uri' => "#{API_DOC_URL}/v#{SEMVER}",
+    'documentation_uri' => "#{HOME_URL}/api/activeinteractor/v#{SEMVER}",
     'wiki_uri' => "#{REPO_URL}/wiki",
     'rubygems_mfa_required' => 'true'
   }

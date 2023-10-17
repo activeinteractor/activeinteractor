@@ -11,6 +11,7 @@ group :development, :test do
   gem 'rubocop-performance', '~> 1.19'
   gem 'rubocop-rake', '~> 0.6'
   gem 'rubocop-rspec', '~> 2.21'
+  gem 'rubocop-yard', '~> 0.7'
   gem 'semver2', git: 'https://github.com/haf/semver', branch: 'master'
 end
 
@@ -19,6 +20,8 @@ group :test do
 end
 
 group :doc do
+  gem 'github-markup', '~> 4.0'
+  gem 'redcarpet', '~> 3.6'
   gem 'yard', '~> 0.9'
 end
 

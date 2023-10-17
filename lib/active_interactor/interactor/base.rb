@@ -5,6 +5,7 @@ module ActiveInteractor
     class Base
       include ContextMethods
       include InteractionMethods
+      include Type::DeclerationMethods
 
       def initialize(input = {})
         @raw_input = input.dup

@@ -1,0 +1,11 @@
+--protected
+--no-private
+--markup-provider=redcarpet
+--markup=markdown
+--embed-mixin ClassMethods
+-
+CHANGELOG.md
+HUMANS.md
+LICENSE
+README.md
+SECURITY.md

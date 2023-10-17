@@ -1,7 +1,7 @@
 rm -rf doc
 echo "\033[0;36m==> Buidling Docs for main\033[0m"
 mkdir -p doc
-yard doc
+bundle exec yard doc
 
 git_tags=$(git tag)
 
@@ -9,5 +9,5 @@ for tag in $git_tags
 do
   echo "\033[0;36m==> Buidling Docs for ${tag}\033[0m"
   mkdir -p doc/${tag}
-  yard doc -o doc/${tag}
+  bundle exec yard doc -o doc/${tag}
 done

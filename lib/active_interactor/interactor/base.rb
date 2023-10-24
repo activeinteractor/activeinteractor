@@ -26,7 +26,7 @@ module ActiveInteractor
         result = nil
         with_notification(:rollback) do |payload|
           rollback
-          result = Result.failure(data: parse_output!, errors: errors)
+          result = Result.failure(data: @output, errors: errors)
           payload[:result] = result
         end
 

@@ -127,7 +127,7 @@ module ActiveInteractor
 
     # @private
     def read_attribute_for_validation(attribute_name)
-      data.send(attribute_name.to_sym)
+      data&.send(attribute_name.to_sym)
     end
 
     # Whether or not the {ActiveInteractor::Interactor::Base result} is a success

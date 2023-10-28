@@ -26,7 +26,7 @@ class CreateUser < ActiveInteractor::Base
 
   def interact
     context.user = User.new
-    return unless context.password == context.password_confirmation
+    fail!(password: %i[invalid]) unless context.password == context.password_confirmation
 
     set_user_attributes
   end
@@ -46,6 +46,7 @@ end
 success_result = CreateUser.perform(login: 'testuser', password: 'password', password_confirmation: 'password')
 puts success_result.success?
 puts success_result.to_json
+puts success_result.data[:user]
 
 failure_result = CreateUser.perform(login: 'testuser', password: 'password', password_confirmation: 'notpassword')
 puts failure_result.success?

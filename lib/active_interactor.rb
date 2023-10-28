@@ -28,6 +28,11 @@ require_relative 'active_interactor/errors'
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 #
+# {https://activeinteractor.org ActiveInteractor} is An implementation of the Command
+# Pattern for Ruby with ActiveModel::Validations inspired by the interactor gem.
+# It has features like rich support for attributes, callbacks, and validations, and
+# thread safe performance methods.
+#
 # {file:CHANGELOG.md Changelog}
 #
 # {file:HUMANS.md Acknowledgements}

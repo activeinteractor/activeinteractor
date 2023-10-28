@@ -8,6 +8,10 @@ module ActiveInteractor
       module ClassMethods
         delegate :argument, :argument_names, :arguments, to: :input_context_class
         delegate :returns, :field_names, :fields, to: :output_context_class
+        delegate(*ActiveModel::Validations::ClassMethods.instance_methods, to: :input_context_class, prefix: :input)
+        delegate(*ActiveModel::Validations::HelperMethods.instance_methods, to: :input_context_class, prefix: :input)
+        delegate(*ActiveModel::Validations::ClassMethods.instance_methods, to: :output_context_class, prefix: :output)
+        delegate(*ActiveModel::Validations::HelperMethods.instance_methods, to: :output_context_class, prefix: :output)
 
         def input_context_class
           @input_context_class ||= const_set(:InputContext, Class.new(Context::Input))
@@ -57,7 +61,7 @@ module ActiveInteractor
 
       def generate_and_validate_output_context!
         @output = self.class.output_context_class.new(context.attributes)
-        @output.validate!
+        @output.valid?
         return if @output.errors.empty?
 
         raise Error, Result.failure(errors: @output.errors, status: Result::STATUS[:failed_at_output])
@@ -69,7 +73,7 @@ module ActiveInteractor
 
       def validate_input_and_generate_runtime_context!
         @input = self.class.input_context_class.new(@raw_input)
-        @input.validate!
+        @input.valid?
         return (@context = self.class.runtime_context_class.new(@raw_input)) if @input.errors.empty?
 
         raise Error, Result.failure(errors: @input.errors, status: Result::STATUS[:failed_at_input])

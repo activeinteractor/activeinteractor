@@ -90,7 +90,7 @@ module ActiveInteractor
         when String
           { generic: [errors] }
         when ActiveModel::Errors
-          errors.as_json
+          errors.to_hash
         else
           errors
         end

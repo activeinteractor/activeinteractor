@@ -2,7 +2,7 @@
 name: 🔒 Security Report
 about: Report a security vulnerability.
 title: '[Security Report]'
-labels: s:unverified, r:security
+labels: t:security, S:triage
 assignees: 'aaronmallen'
 ---
 

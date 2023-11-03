@@ -45,7 +45,6 @@ module ActiveInteractor
   extend ActiveSupport::Autoload
 
   autoload :ActiveModelErrorMethods
-  autoload :Base
   autoload :Context
   autoload :Interactor
   autoload :Result

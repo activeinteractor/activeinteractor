@@ -2,10 +2,35 @@
 
 module ActiveInteractor
   module Context
+    # An attribute of a {ActiveInteractor::Context::Base context}
+    #
+    # @api private
+    #
+    # @!attribute [r] description
+    #   @return [String, nil] the attribute description
+    #
+    # @!attribute [r] error_messages
+    #   @return [Array<Symbol, String, nil>] the attribute error messages
+    #
+    # @!attribute [r] name
+    #   @return [Symbol] the attribute name
     class Attribute
+      # Used when no default value is provided
+      # @visibility private
+      # @return [Symbol]
       NO_DEFAULT_VALUE = :__no_default_value__
       attr_reader :description, :error_messages, :name
 
+      # Create a new instance of {ActiveInteractor::Context::Attribute}
+      #
+      # @param owner [ActiveInteractor::Context::Base] the context object the attribute belongs to
+      # @param name [String, Symbol] the attribute name
+      # @param type [Class, ActiveInteractor::Type::Base] the attribute type
+      # @param description [String, nil] the attribute description
+      # @param options [Hash] the attribute options
+      # @option options [Boolean] :required (false) whether the attribute is required
+      # @option options [Object] :default (NO_DEFAULT_VALUE) the attribute default value
+      # @return [ActiveInteractor::Context::Attribute]
       def initialize(owner, name, type, description = nil, **options)
         @owner = owner
         @name = name.to_sym
@@ -15,28 +40,48 @@ module ActiveInteractor
         @error_messages = []
       end
 
+      # Assign a value to the attribute
+      #
+      # @param value [Object] the value to assign
+      # @return [void]
       def assign_value(value)
         @user_provided_value = value
       end
 
+      # The attribute default value
+      #
+      # @return [Object, nil]
       def default_value
         return if @options[:default] == NO_DEFAULT_VALUE
 
         @options[:default]
       end
 
+      # Whether the attribute is required
+      #
+      # @return [Boolean]
       def required?
         @options[:required]
       end
 
+      # The attribute type
+      #
+      # @return [Class, ActiveInteractor::Type::Base, Object]
       def type
         @type_expression
       end
 
+      # Validate the attribute
+      #
+      # @return [void]
       def validate!
-        validate_presence! && validate_type!
+        validate_presence!
+        validate_type!
       end
 
+      # The attribute value (user provided or default)
+      #
+      # @return [Object, nil]
       def value
         @user_provided_value || default_value
       end

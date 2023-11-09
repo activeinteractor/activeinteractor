@@ -23,6 +23,8 @@ group :doc do
   gem 'github-markup', '~> 4.0'
   gem 'redcarpet', '~> 3.6'
   gem 'yard', '~> 0.9'
+  gem 'yard-activesupport-concern', '<= 1'
+  gem 'yard-delegate', '~> 0.0.1'
 end
 
 # Specify your gem's dependencies in activeinteractor.gemspec

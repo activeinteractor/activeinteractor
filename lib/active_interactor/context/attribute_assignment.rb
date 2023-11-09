@@ -5,6 +5,12 @@ module ActiveInteractor
     module AttributeAssignment
       extend ActiveSupport::Concern
 
+      module ClassMethods
+        def method_defined?(method_name)
+          attribute_set.attribute_names.include?(method_name.to_s.delete('=').to_sym) || super
+        end
+      end
+
       def initialize(attributes = {})
         attribute_set.attributes.each do |attribute|
           next unless attributes.with_indifferent_access.key?(attribute.name)

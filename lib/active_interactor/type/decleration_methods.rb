@@ -25,10 +25,6 @@ module ActiveInteractor
           :untyped
         end
       end
-
-      included do
-        extend ClassMethods
-      end
     end
   end
 end

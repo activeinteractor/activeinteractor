@@ -3,6 +3,8 @@
 --markup-provider=redcarpet
 --markup=markdown
 --embed-mixin ClassMethods
+--plugin activesupport-concern
+--plugin delegate
 -
 CHANGELOG.md
 HUMANS.md

@@ -3,11 +3,10 @@
 module ActiveInteractor
   module Context
     class Base
-      # extend ActiveModelErrorMethods::ClassMethods
+      extend AttributeAssignment::ClassMethods
       extend AttributeRegistration::ClassMethods
       extend Type::DeclerationMethods::ClassMethods
       include ActiveModel::Validations
-      # include ActiveModelErrorMethods
       include AttributeRegistration
       include AttributeAssignment
       include AttributeValidation

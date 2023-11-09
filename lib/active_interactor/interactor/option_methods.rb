@@ -3,12 +3,17 @@
 module ActiveInteractor
   module Interactor
     module OptionMethods
-      def initialize(input = {})
-        super(input)
-        @options = Options.new
+      module ClassMethods
+        def with_options(options)
+          new(options)
+        end
       end
 
-      def with_options(options = {})
+      def initialize(options = {})
+        @options = Options.new(options.deep_dup)
+      end
+
+      def with_options(options)
         @options = Options.new(options.deep_dup)
         self
       end

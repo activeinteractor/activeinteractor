@@ -54,13 +54,6 @@ module ActiveInteractor
         attr_reader :context
       end
 
-      def initialize(input = {})
-        @raw_input = input.deep_dup
-        create_input_context
-        validate_input_context!
-        create_runtime_context
-      end
-
       protected # rubocop:disable Lint/UselessAccessModifier
 
       def create_input_context
@@ -102,7 +95,7 @@ module ActiveInteractor
         return unless @options.validate && @options.validate_output_context
 
         run_callbacks :output_context_validation do
-          @output.valid?
+          @output_context.valid?
         end
 
         return if @output_context.errors.empty?

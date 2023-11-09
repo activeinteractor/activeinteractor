@@ -6,12 +6,12 @@ module ActiveInteractor
       extend ActiveSupport::Concern
 
       module ClassMethods
-        def perform!(input_context = {})
-          new(input_context).perform!
+        def perform!(input_context = {}, options = {})
+          new(options).perform!(input_context)
         end
 
-        def perform(input_context = {})
-          perform!(input_context)
+        def perform(input_context = {}, options = {})
+          perform!(input_context, options)
         rescue Error => e
           e.result
         rescue StandardError => e
@@ -19,14 +19,18 @@ module ActiveInteractor
         end
       end
 
-      def perform!
+      def perform!(input_context = {})
+        @raw_input = input_context.deep_dup
+        create_input_context
+        validate_input_context!
+        create_runtime_context
         return execute_perform_with_callbacks unless @options.skip_perform_callbacks
 
         execute_perform
       end
 
-      def perform
-        perform!
+      def perform(input_context = {})
+        perform!(input_context)
       rescue Error => e
         e.result
       rescue StandardError => e

@@ -6,6 +6,7 @@ module ActiveInteractor
       extend Callbacks::ClassMethods
       extend ContextMethods::ClassMethods
       extend InteractionMethods::ClassMethods
+      extend OptionMethods::ClassMethods
       extend Type::DeclerationMethods::ClassMethods
       include Callbacks
       include ContextMethods

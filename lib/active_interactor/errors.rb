@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module ActiveInteractor
+  # Raised on interactor failure
+  #
+  # @!attribute [r] result
+  #  @return [ActiveInteractor::Result] the result of the interactor that failed
   class Error < StandardError
     attr_reader :result
 

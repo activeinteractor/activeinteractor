@@ -2,12 +2,19 @@
 
 module ActiveInteractor
   module Context
+    # The base class for all runtime context objects
     class Runtime < Base
+      # Create a new instance of {ActiveInteractor::Context::Runtime} and assign the attributes
+      #
+      # @param attributes [Hash{Symbol => Object}] the attributes to assign to the context
       def initialize(attributes = {})
         super
         @table = {}
       end
 
+      # Return the attributes as a hash
+      #
+      # @return [Hash{Symbol => Object}] the attributes as a hash
       def attributes
         clean = attribute_set.attributes.each_with_object({}) do |attribute, result|
           result[attribute.name] = attribute.value

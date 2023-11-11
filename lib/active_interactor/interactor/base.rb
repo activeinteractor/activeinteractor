@@ -2,6 +2,7 @@
 
 module ActiveInteractor
   module Interactor
+    # The Base Class inherited by all Interactors
     class Base
       extend Callbacks::ClassMethods
       extend ContextMethods::ClassMethods

@@ -5,6 +5,7 @@
 --embed-mixin ClassMethods
 --plugin activesupport-concern
 --plugin delegate
+--plugin sitemap
 -
 CHANGELOG.md
 HUMANS.md

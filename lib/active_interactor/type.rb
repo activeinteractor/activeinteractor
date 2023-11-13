@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module ActiveInteractor
+  # The Type namespace
   module Type
     extend ActiveSupport::Autoload
 

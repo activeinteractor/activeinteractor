@@ -2,7 +2,7 @@
 name: 🚀 Feature Request
 about: Propose a change.
 title: '[Feature Request]'
-labels: t:feature
+labels: feature
 assignees: 'aaronmallen'
 ---
 

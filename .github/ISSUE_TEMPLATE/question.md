@@ -2,7 +2,7 @@
 name: ❓ Question
 about: Ask a question that isn't a feature request a bug report.
 title: '[Question]'
-labels: t:question
+labels: question
 assignees: 'aaronmallen'
 ---
 

@@ -16,7 +16,7 @@ module ActiveInteractor
 
       def initialize(options = {})
         prepared_options = DEFAULTS.merge(options.deep_dup)
-        prepared_options.each_pair { |key, value| instance_variable_set("@#{key}", value) }
+        prepared_options.each_pair { |key, value| instance_variable_set(:"@#{key}", value) }
       end
     end
   end

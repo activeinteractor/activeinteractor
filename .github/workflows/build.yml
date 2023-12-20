@@ -23,5 +23,6 @@ jobs:
     uses: ./.github/workflows/test.yml
   coverage:
     uses: ./.github/workflows/report_coverage.yml
+    secrets: inherit
   package:
     uses: ./.github/workflows/package.yml

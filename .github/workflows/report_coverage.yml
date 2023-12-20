@@ -6,6 +6,8 @@ on:
 jobs:
   coverage:
     runs-on: ubuntu-latest
+    env:
+      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
     steps:
       - name: Setup Branch
         uses: actions/checkout@v4
@@ -17,10 +19,7 @@ jobs:
           bundler-cache: true
 
       - name: Report Coverage
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         uses: paambaati/codeclimate-action@v5.0.0
         with:
           coverageCommand: bundle exec rspec --order rand
           coverageLocations: ${{ github.workspace }}/coverage/coverage.json:simplecov
-          debug: true

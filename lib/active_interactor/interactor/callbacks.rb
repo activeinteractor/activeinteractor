@@ -130,7 +130,7 @@ module ActiveInteractor
         end
       end
 
-      s included do
+      included do
         include ActiveSupport::Callbacks
         define_callbacks :fail, :input_context_create, :input_context_validation, :output_context_create,
                          :output_context_validation, :perform, :rollback, :runtime_context_create

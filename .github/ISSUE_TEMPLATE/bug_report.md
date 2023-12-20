@@ -2,7 +2,7 @@
 name: 🐞 Bug Report
 about: Report a bug to help us improve.
 title: '[Bug Report]'
-labels: t:bug, S:triage
+labels: bug, triage
 assignees: 'aaronmallen'
 ---
 

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'simplecov'
+require 'simplecov_json_formatter'
 
 module ActiveInteractor
   module Spec
@@ -9,6 +10,7 @@ module ActiveInteractor
       TRACKED_FILES_PATTERN = 'lib/**/*.rb'
 
       def self.start
+        SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
         SimpleCov.start do
           add_filter EXCLUDED_FILES_PATTERN
           enable_coverage :branch

@@ -17,6 +17,7 @@ end
 
 group :test do
   gem 'simplecov', '0.22.0'
+  gem 'simplecov_json_formatter'
 end
 
 group :doc do

@@ -6,10 +6,6 @@ module ActiveInteractor
     extend ActiveSupport::Autoload
 
     autoload :Base
-    autoload :Callbacks
-    autoload :ContextMethods
-    autoload :InteractionMethods
-    autoload :OptionMethods
     autoload :Options
   end
 end

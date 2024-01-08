@@ -6,10 +6,7 @@ module ActiveInteractor
     extend ActiveSupport::Autoload
 
     autoload :Attribute
-    autoload :AttributeAssignment
-    autoload :AttributeRegistration
     autoload :AttributeSet
-    autoload :AttributeValidation
     autoload :Base
     autoload :Input
     autoload :Output

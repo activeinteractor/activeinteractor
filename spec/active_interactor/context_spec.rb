@@ -7,20 +7,8 @@ RSpec.describe ActiveInteractor::Context do
     expect(described_class::Attribute).to be_a Class
   end
 
-  it 'is expected to have ::AttributeAssignment' do
-    expect(described_class::AttributeAssignment).to be_a Module
-  end
-
-  it 'is expected to have ::AttributeRegistration' do
-    expect(described_class::AttributeRegistration).to be_a Module
-  end
-
   it 'is expected to have ::AttributeSet' do
     expect(described_class::AttributeSet).to be_a Class
-  end
-
-  it 'is expected to have ::AttributeValidation' do
-    expect(described_class::AttributeValidation).to be_a Module
   end
 
   it 'is expected to have ::Base' do

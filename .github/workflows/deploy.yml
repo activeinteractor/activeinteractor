@@ -1,0 +1,27 @@
+name: Deploy
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  lint:
+    uses: ./.github/workflows/lint.yml
+  test:
+    if: success()
+    needs:
+      - lint
+    uses: ./.github/workflows/test.yml
+    secrets: inherit
+  package:
+    if: success()
+    needs:
+      - test
+    uses: ./.github/workflows/package.yml
+  publish:
+    if: success()
+    needs:
+      - package
+    uses: ./.github/workflows/publish.yml
+    secrets: inherit

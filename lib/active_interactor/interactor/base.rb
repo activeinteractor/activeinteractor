@@ -242,8 +242,9 @@ module ActiveInteractor
       end
 
       def fail!(errors = {})
+        result = nil
+
         run_callbacks :fail do
-          result = nil
           with_notification(:rollback) do |payload|
             perform_rollback unless @options.skip_rollback
             result = Result.failure(data: @output, errors: errors)

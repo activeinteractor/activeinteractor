@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-GEM_VERSION = '2.0.0.alpha.4.0.1'
-SEMVER = '2.0.0-alpha.4.0.1'
+GEM_VERSION = '2.0.0.alpha.4.0.2'
+SEMVER = '2.0.0-alpha.4.0.2'
 HOME_URL = 'https://activeinteractor.org'
 REPO_URL = 'https://github.com/activeinteractor/activeinteractor'
 

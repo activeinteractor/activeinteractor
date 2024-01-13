@@ -36,7 +36,7 @@ plugins:
   git-legal:
     enabled: true
   markdownlint:
-    enabled: true
+    enabled: false
   rubocop:
     enabled: true
     channel: rubocop-1-9-1

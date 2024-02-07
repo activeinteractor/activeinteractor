@@ -8,6 +8,8 @@ module ActiveInteractor
       include ActiveModel::Validations
       include Type::DeclerationMethods
 
+      validate :validate_attributes!
+
       class << self
         def method_defined?(method_name)
           attribute_set.attribute_names.include?(method_name.to_s.delete('=').to_sym) || super
@@ -77,6 +79,13 @@ module ActiveInteractor
         return true if attribute_set.attribute_names.include?(method_name.to_s.delete('=').to_sym)
 
         super
+      end
+
+      def validate_attributes!
+        attribute_set.attributes.each do |attribute|
+          attribute.validate!
+          attribute.error_messages.each { |message| errors.add(attribute.name, message) }
+        end
       end
     end
   end

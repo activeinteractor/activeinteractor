@@ -7,7 +7,7 @@ group :development, :test do
   gem 'rake', '13.1.0'
   gem 'rbs', '3.4.3'
   gem 'rspec', '3.13.0'
-  gem 'rubocop', '1.60.2'
+  gem 'rubocop', '1.62.1'
   gem 'rubocop-performance', '1.20.2'
   gem 'rubocop-rake', '0.6.0'
   gem 'rubocop-rspec', '2.26.1'

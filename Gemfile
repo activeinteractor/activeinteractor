@@ -23,7 +23,7 @@ end
 group :doc do
   gem 'github-markup', '4.0.2'
   gem 'redcarpet', '3.6.0'
-  gem 'yard', '0.9.34'
+  gem 'yard', '0.9.36'
   gem 'yard-activesupport-concern', '0.0.1'
   gem 'yard-delegate', '0.0.1'
   gem 'yard-sitemap', '1.0.1'

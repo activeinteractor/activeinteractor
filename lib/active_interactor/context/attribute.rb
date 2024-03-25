@@ -68,18 +68,15 @@ module ActiveInteractor
       end
 
       def validate_type!
-        return true if value.nil?
-        return true if %i[any untyped].include?(type)
-
-        if type_is_a_active_interactor_type?
-          return true if type.valid?(value)
-
-          error_messages << :invalid
-        elsif value.is_a?(type)
-          return true
-        end
+        return true if value_nil_or_untyped?
+        return true if type_is_a_active_interactor_type? && type.valid?(value)
+        return true if value.is_a?(type)
 
         error_messages << :invalid
+      end
+
+      def value_nil_or_untyped?
+        value.nil? || %i[any untyped].include?(type)
       end
     end
   end

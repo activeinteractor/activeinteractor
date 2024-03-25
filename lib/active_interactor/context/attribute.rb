@@ -7,11 +7,11 @@ module ActiveInteractor
       attr_reader :description, :error_messages, :name
 
       def initialize(owner, name, type, description = nil, **options)
+        parse_options(description, options)
+
         @owner = owner
         @name = name.to_sym
         @type_expression = type
-        @description = description || options[:description]
-        @options = { required: false, default: NO_DEFAULT_VALUE }.merge(options)
         @error_messages = []
       end
 
@@ -43,6 +43,19 @@ module ActiveInteractor
       end
 
       private
+
+      def parse_options(description, options)
+        if description.is_a?(String)
+          @description = description
+          @options = { required: false, default: NO_DEFAULT_VALUE }.merge(options)
+        elsif description.is_a?(Hash)
+          @options = { required: false, default: NO_DEFAULT_VALUE }.merge(description)
+          @description = @options[:description]
+        elsif description.nil?
+          @description = nil
+          @options = { required: false, default: NO_DEFAULT_VALUE }.merge(options)
+        end
+      end
 
       def type_is_a_active_interactor_type?
         type.is_a?(ActiveInteractor::Type::Base) || type.superclass == ActiveInteractor::Type::Base

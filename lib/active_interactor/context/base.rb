@@ -18,7 +18,7 @@ module ActiveInteractor
         protected
 
         def attribute_set
-          @attribute_set ||= AttributeSet.new(self)
+          @attribute_set ||= AttributeSet.new
         end
       end
 
@@ -57,7 +57,7 @@ module ActiveInteractor
       end
 
       def attribute_set
-        @attribute_set ||= AttributeSet.new(self, *self.class.send(:attribute_set).attributes.map(&:dup))
+        @attribute_set ||= AttributeSet.new(*self.class.send(:attribute_set).attributes.map(&:dup))
       end
 
       def method_missing(method_name, *arguments)

@@ -3,15 +3,14 @@
 module ActiveInteractor
   module Context
     class AttributeSet
-      def initialize(owner, *attributes)
-        @owner = owner
+      def initialize(*attributes)
         @set = {}
         attributes.each { |attribute| @set[attribute.name] = attribute }
       end
 
       def add(*attribute_args)
         attribute_options = attribute_args.extract_options!
-        attribute = Attribute.new(@owner, *attribute_args, **attribute_options)
+        attribute = Attribute.new(*attribute_args, **attribute_options)
         @set[attribute.name] = attribute
       end
 

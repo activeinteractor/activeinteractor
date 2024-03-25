@@ -3,10 +3,8 @@
 require 'spec_helper'
 
 RSpec.describe ActiveInteractor::Context::AttributeSet do
-  let(:owner) { instance_double(ActiveInteractor::Context::Base) }
-
   describe '#initialize' do
-    subject(:attribute_set) { described_class.new(owner, attribute) }
+    subject(:attribute_set) { described_class.new(attribute) }
 
     let(:attribute) { instance_double(ActiveInteractor::Context::Attribute, name: :test) }
 
@@ -18,7 +16,7 @@ RSpec.describe ActiveInteractor::Context::AttributeSet do
   describe '#add' do
     subject(:add) { attribute_set.add(*attribute_args) }
 
-    let(:attribute_set) { described_class.new(owner) }
+    let(:attribute_set) { described_class.new }
     let(:attribute_args) do
       [
         :test,
@@ -36,7 +34,7 @@ RSpec.describe ActiveInteractor::Context::AttributeSet do
   describe '#attribute_names' do
     subject(:attribute_names) { attribute_set.attribute_names }
 
-    let(:attribute_set) { described_class.new(owner, attribute) }
+    let(:attribute_set) { described_class.new(attribute) }
     let(:attribute) { instance_double(ActiveInteractor::Context::Attribute, name: :test) }
 
     it 'returns attribute names' do
@@ -47,7 +45,7 @@ RSpec.describe ActiveInteractor::Context::AttributeSet do
   describe '#attributes' do
     subject(:attributes) { attribute_set.attributes }
 
-    let(:attribute_set) { described_class.new(owner, attribute) }
+    let(:attribute_set) { described_class.new(attribute) }
     let(:attribute) { instance_double(ActiveInteractor::Context::Attribute, name: :test) }
 
     it 'returns attributes' do
@@ -58,7 +56,7 @@ RSpec.describe ActiveInteractor::Context::AttributeSet do
   describe '#find' do
     subject(:find) { attribute_set.find(attribute_name) }
 
-    let(:attribute_set) { described_class.new(owner, attribute) }
+    let(:attribute_set) { described_class.new(attribute) }
     let(:attribute_name) { :test }
     let(:attribute) { instance_double(ActiveInteractor::Context::Attribute, name: attribute_name) }
 
@@ -70,7 +68,7 @@ RSpec.describe ActiveInteractor::Context::AttributeSet do
   describe '#merge' do
     subject(:merge) { attribute_set.merge(attributes) }
 
-    let(:attribute_set) { described_class.new(owner) }
+    let(:attribute_set) { described_class.new }
     let(:attributes) { [attribute] }
     let(:attribute) { instance_double(ActiveInteractor::Context::Attribute, name: :test) }
 

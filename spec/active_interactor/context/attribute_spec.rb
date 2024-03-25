@@ -8,7 +8,6 @@ RSpec.describe ActiveInteractor::Context::Attribute do
 
     let(:attribute_args) do
       [
-        instance_double(ActiveInteractor::Context::Base),
         :test,
         String,
         'A test attribute'
@@ -38,7 +37,6 @@ RSpec.describe ActiveInteractor::Context::Attribute do
     context 'when description is passed as an option' do
       let(:attribute_args) do
         [
-          instance_double(ActiveInteractor::Context::Base),
           :test,
           String,
           { description: 'A test attribute' }
@@ -53,7 +51,6 @@ RSpec.describe ActiveInteractor::Context::Attribute do
     context 'when required is passed as an option' do
       let(:attribute_args) do
         [
-          instance_double(ActiveInteractor::Context::Base),
           :test,
           String,
           { required: true }
@@ -68,7 +65,6 @@ RSpec.describe ActiveInteractor::Context::Attribute do
     context 'when default is passed as an option' do
       let(:attribute_args) do
         [
-          instance_double(ActiveInteractor::Context::Base),
           :test,
           String,
           { default: 'default' }
@@ -85,7 +81,7 @@ RSpec.describe ActiveInteractor::Context::Attribute do
     subject(:assign_value) { attribute.assign_value(value) }
 
     let(:attribute) do
-      described_class.new(ActiveInteractor::Context::Base, :test, String, 'A test attribute')
+      described_class.new(:test, String, 'A test attribute')
     end
 
     let(:value) { 'test' }
@@ -97,14 +93,14 @@ RSpec.describe ActiveInteractor::Context::Attribute do
     subject(:default_value) { attribute.default_value }
 
     let(:attribute) do
-      described_class.new(ActiveInteractor::Context::Base, :test, String, 'A test attribute')
+      described_class.new(:test, String, 'A test attribute')
     end
 
     it { is_expected.to be_nil }
 
     context 'when default is set' do
       let(:attribute) do
-        described_class.new(ActiveInteractor::Context::Base, :test, String, { default: 'default' })
+        described_class.new(:test, String, { default: 'default' })
       end
 
       it { is_expected.to eq('default') }
@@ -115,14 +111,14 @@ RSpec.describe ActiveInteractor::Context::Attribute do
     subject(:required?) { attribute.required? }
 
     let(:attribute) do
-      described_class.new(ActiveInteractor::Context::Base, :test, String, 'A test attribute')
+      described_class.new(:test, String, 'A test attribute')
     end
 
     it { is_expected.to be(false) }
 
     context 'when required is set' do
       let(:attribute) do
-        described_class.new(ActiveInteractor::Context::Base, :test, String, { required: true })
+        described_class.new(:test, String, { required: true })
       end
 
       it { is_expected.to be(true) }
@@ -133,7 +129,7 @@ RSpec.describe ActiveInteractor::Context::Attribute do
     subject(:type) { attribute.type }
 
     let(:attribute) do
-      described_class.new(ActiveInteractor::Context::Base, :test, String, 'A test attribute')
+      described_class.new(:test, String, 'A test attribute')
     end
 
     it { is_expected.to eq(String) }
@@ -143,14 +139,14 @@ RSpec.describe ActiveInteractor::Context::Attribute do
     subject(:validate!) { attribute.validate! }
 
     let(:attribute) do
-      described_class.new(ActiveInteractor::Context::Base, :test, String, 'A test attribute')
+      described_class.new(:test, String, 'A test attribute')
     end
 
     it { expect { validate! }.not_to change(attribute, :error_messages) }
 
     context 'when required and value is nil' do
       let(:attribute) do
-        described_class.new(ActiveInteractor::Context::Base, :test, String, { required: true })
+        described_class.new(:test, String, { required: true })
       end
 
       it { expect { validate! }.to change(attribute, :error_messages).from([]).to(%i[blank]) }
@@ -158,7 +154,7 @@ RSpec.describe ActiveInteractor::Context::Attribute do
 
     context 'when type is wrong' do
       let(:attribute) do
-        described_class.new(ActiveInteractor::Context::Base, :test, String)
+        described_class.new(:test, String)
       end
 
       before do
@@ -173,7 +169,7 @@ RSpec.describe ActiveInteractor::Context::Attribute do
     subject(:value) { attribute.value }
 
     let(:attribute) do
-      described_class.new(ActiveInteractor::Context::Base, :test, String, 'A test attribute')
+      described_class.new(:test, String, 'A test attribute')
     end
 
     it { is_expected.to be_nil }
@@ -188,7 +184,7 @@ RSpec.describe ActiveInteractor::Context::Attribute do
 
     context 'when default is set' do
       let(:attribute) do
-        described_class.new(ActiveInteractor::Context::Base, :test, String, { default: 'default' })
+        described_class.new(:test, String, { default: 'default' })
       end
 
       it { is_expected.to eq('default') }
@@ -196,7 +192,7 @@ RSpec.describe ActiveInteractor::Context::Attribute do
 
     context 'when default is set and overwritten by user_provided_value' do
       let(:attribute) do
-        described_class.new(ActiveInteractor::Context::Base, :test, String, { default: 'default' })
+        described_class.new(:test, String, { default: 'default' })
       end
 
       before do

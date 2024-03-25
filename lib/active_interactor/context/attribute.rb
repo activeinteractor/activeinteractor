@@ -6,10 +6,9 @@ module ActiveInteractor
       NO_DEFAULT_VALUE = :__no_default_value__
       attr_reader :description, :error_messages, :name
 
-      def initialize(owner, name, type, description = nil, **options)
+      def initialize(name, type, description = nil, **options)
         parse_options(description, options)
 
-        @owner = owner
         @name = name.to_sym
         @type_expression = type
         @error_messages = []

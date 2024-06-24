@@ -21,7 +21,7 @@ group :test do
 end
 
 group :doc do
-  gem 'github-markup', '4.0.2'
+  gem 'github-markup', '5.0.1'
   gem 'redcarpet', '3.6.0'
   gem 'yard', '0.9.36'
   gem 'yard-activesupport-concern', '0.0.1'

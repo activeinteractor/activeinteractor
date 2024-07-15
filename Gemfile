@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 group :development, :test do
   gem 'code-scanning-rubocop', '0.6.1'
   gem 'rake', '13.2.1'
-  gem 'rbs', '3.5.1'
+  gem 'rbs', '3.5.2'
   gem 'rspec', '3.13.0'
   gem 'rubocop', '1.64.1'
   gem 'rubocop-performance', '1.21.1'

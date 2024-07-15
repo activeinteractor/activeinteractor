@@ -10,7 +10,7 @@ group :development, :test do
   gem 'rubocop', '1.64.1'
   gem 'rubocop-performance', '1.21.1'
   gem 'rubocop-rake', '0.6.0'
-  gem 'rubocop-rspec', '3.0.2'
+  gem 'rubocop-rspec', '3.0.3'
   gem 'rubocop-yard', '0.9.3'
   gem 'semver2', git: 'https://github.com/haf/semver', branch: 'master'
 end
